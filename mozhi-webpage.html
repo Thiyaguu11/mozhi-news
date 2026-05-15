@@ -1,0 +1,223 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+.site { font-family: 'DM Sans', sans-serif; color: var(--color-text-primary); max-width: 860px; margin: 0 auto; padding: 0 1.5rem 4rem; }
+
+.nav { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; border-bottom: 1px solid var(--color-border-tertiary); margin-bottom: 0; }
+.nav-logo { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--color-text-primary); letter-spacing: -0.3px; }
+.nav-logo span { color: #1D9E75; }
+.nav-links { display: flex; gap: 24px; }
+.nav-links a { font-size: 13px; color: var(--color-text-secondary); text-decoration: none; letter-spacing: 0.3px; cursor: pointer; transition: color 0.2s; }
+.nav-links a:hover { color: #1D9E75; }
+.nav-links a.active { color: #1D9E75; font-weight: 500; }
+
+.page { display: none; }
+.page.visible { display: block; }
+
+.hero { padding: 5rem 0 3.5rem; border-bottom: 1px solid var(--color-border-tertiary); }
+.hero-kicker { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #1D9E75; font-weight: 500; margin-bottom: 1.2rem; }
+.hero-title { font-family: 'Playfair Display', serif; font-size: 52px; line-height: 1.1; letter-spacing: -1px; color: var(--color-text-primary); max-width: 600px; margin-bottom: 1.5rem; }
+.hero-title em { font-style: italic; color: #1D9E75; }
+.hero-sub { font-size: 16px; color: var(--color-text-secondary); line-height: 1.7; max-width: 480px; margin-bottom: 2.5rem; font-weight: 300; }
+.hero-form { display: flex; gap: 10px; max-width: 440px; }
+.hero-form input { flex: 1; padding: 12px 16px; border: 1px solid var(--color-border-secondary); border-radius: 4px; font-family: 'DM Sans', sans-serif; font-size: 14px; background: var(--color-background-primary); color: var(--color-text-primary); outline: none; }
+.hero-form input:focus { border-color: #1D9E75; }
+.hero-form button { padding: 12px 20px; background: #1D9E75; color: #fff; border: none; border-radius: 4px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; white-space: nowrap; transition: background 0.2s; }
+.hero-form button:hover { background: #0F6E56; }
+.hero-note { font-size: 12px; color: var(--color-text-tertiary); margin-top: 10px; }
+
+.stats-row { display: flex; gap: 3rem; padding: 2rem 0; border-bottom: 1px solid var(--color-border-tertiary); }
+/* .stat { } */
+.stat-num { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--color-text-primary); }
+.stat-label { font-size: 12px; color: var(--color-text-tertiary); margin-top: 2px; letter-spacing: 0.3px; }
+
+.section-header { display: flex; justify-content: space-between; align-items: baseline; padding: 2.5rem 0 1.2rem; border-bottom: 1px solid var(--color-border-tertiary); margin-bottom: 1.5rem; }
+.section-title { font-family: 'Playfair Display', serif; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--color-text-secondary); }
+.section-link { font-size: 12px; color: #1D9E75; cursor: pointer; text-decoration: none; }
+.section-link:hover { text-decoration: underline; }
+
+.issues-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5px; background: var(--color-border-tertiary); border: 1px solid var(--color-border-tertiary); }
+.issue-card { background: var(--color-background-primary); padding: 1.5rem; cursor: pointer; transition: background 0.15s; }
+.issue-card:hover { background: var(--color-background-secondary); }
+.issue-meta { font-size: 11px; color: var(--color-text-tertiary); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 10px; }
+.issue-num { color: #1D9E75; font-weight: 500; }
+.issue-title { font-family: 'Playfair Display', serif; font-size: 17px; line-height: 1.35; color: var(--color-text-primary); margin-bottom: 10px; }
+.issue-preview { font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; font-weight: 300; }
+.issue-tag { display: inline-block; margin-top: 12px; font-size: 11px; padding: 3px 8px; background: #E1F5EE; color: #085041; border-radius: 2px; letter-spacing: 0.3px; }
+
+.about-wrap { max-width: 580px; padding: 4rem 0; }
+.about-kicker { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #1D9E75; font-weight: 500; margin-bottom: 1.5rem; }
+.about-title { font-family: 'Playfair Display', serif; font-size: 36px; line-height: 1.2; color: var(--color-text-primary); margin-bottom: 2rem; letter-spacing: -0.5px; }
+.about-body { font-size: 16px; color: var(--color-text-secondary); line-height: 1.85; font-weight: 300; margin-bottom: 1.5rem; }
+.about-body strong { color: var(--color-text-primary); font-weight: 500; }
+.about-values { margin: 2.5rem 0; border-top: 1px solid var(--color-border-tertiary); }
+.value-row { display: flex; gap: 1.5rem; padding: 1.2rem 0; border-bottom: 1px solid var(--color-border-tertiary); align-items: flex-start; }
+.value-icon { width: 32px; height: 32px; background: #E1F5EE; border-radius: 4px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #085041; font-size: 15px; }
+.value-text h4 { font-size: 14px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px; }
+.value-text p { font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; font-weight: 300; }
+
+.sub-banner { background: #E1F5EE; border-radius: 4px; padding: 2rem; margin-top: 3rem; }
+.sub-banner h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: #085041; margin-bottom: 8px; }
+.sub-banner p { font-size: 13px; color: #0F6E56; margin-bottom: 1.2rem; font-weight: 300; }
+.sub-banner-form { display: flex; gap: 8px; }
+.sub-banner-form input { flex: 1; padding: 10px 14px; border: 1px solid #9FE1CB; border-radius: 4px; font-family: 'DM Sans', sans-serif; font-size: 13px; background: #fff; color: #085041; outline: none; }
+.sub-banner-form button { padding: 10px 18px; background: #0F6E56; color: #fff; border: none; border-radius: 4px; font-size: 13px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+
+.footer { border-top: 1px solid var(--color-border-tertiary); padding-top: 2rem; margin-top: 4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.footer-logo { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--color-text-primary); }
+.footer-logo span { color: #1D9E75; }
+.footer-copy { font-size: 12px; color: var(--color-text-tertiary); }
+.footer-tagline { font-size: 12px; color: var(--color-text-tertiary); font-style: italic; }
+
+.confirmed { display: none; background: #E1F5EE; border-radius: 4px; padding: 10px 16px; font-size: 13px; color: #085041; margin-top: 12px; }
+.confirmed.show { display: block; }
+</style>
+
+<div class="site">
+  <h2 class="sr-only">Mozhi.news — Tamil and English news, not sponsored by outrage</h2>
+
+  <nav class="nav">
+    <div class="nav-logo" onclick="showPage('home')" style="cursor:pointer">mozhi<span>.news</span></div>
+    <div class="nav-links">
+      <a onclick="showPage('home')" class="active" id="nav-home">Home</a>
+      <a onclick="showPage('issues')" id="nav-issues">Issues</a>
+      <a onclick="showPage('about')" id="nav-about">About</a>
+      <a href="https://mozhi.substack.com" style="color:#1D9E75;font-weight:500">Subscribe</a>
+    </div>
+  </nav>
+
+  <div class="page visible" id="page-home">
+    <div class="hero">
+      <p class="hero-kicker">Tamil & English · Est. May 2026</p>
+      <h1 class="hero-title">News without the noise.<br><em>Mozhi.</em></h1>
+      <p class="hero-sub">Bilingual coverage of Tamil Nadu politics and global Tamil affairs — factual, calm, and never sponsored by outrage. Published 3x a week.</p>
+      <div class="hero-form">
+        <input type="email" id="hero-email" placeholder="your@email.com" />
+        <button onclick="handleSubscribe('hero')">Subscribe free</button>
+      </div>
+      <p class="hero-note">Free forever. Unsubscribe anytime.</p>
+      <div class="confirmed" id="confirmed-hero">You're in. Issue #002 lands Wednesday.</div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat"><div class="stat-num">1</div><div class="stat-label">Issues published</div></div>
+      <div class="stat"><div class="stat-num">Tamil + EN</div><div class="stat-label">Bilingual from day one</div></div>
+      <div class="stat"><div class="stat-num">3×</div><div class="stat-label">Per week</div></div>
+    </div>
+
+    <div class="section-header">
+      <span class="section-title">Latest issues</span>
+      <a class="section-link" onclick="showPage('issues')">All issues →</a>
+    </div>
+
+    <div class="issues-grid">
+      <div class="issue-card">
+        <div class="issue-meta"><span class="issue-num">#001</span> · May 16, 2026</div>
+        <div class="issue-title">Vijay's first week: electricity, women's safety, and a floor test passed</div>
+        <div class="issue-preview">Six days in, the new CM signs two flagship orders and clears the confidence vote. What actually happened — without the spin.</div>
+        <span class="issue-tag">Tamil Nadu</span>
+      </div>
+      <div class="issue-card" style="opacity:0.45;">
+        <div class="issue-meta"><span class="issue-num">#002</span> · Coming Wed</div>
+        <div class="issue-title">Subscribe to read the next issue</div>
+        <div class="issue-preview">Cabinet portfolios, the first opposition move, and what the diaspora is saying.</div>
+        <span class="issue-tag">Upcoming</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page" id="page-issues">
+    <div class="section-header" style="padding-top:3rem">
+      <span class="section-title">All issues</span>
+      <span style="font-size:12px;color:var(--color-text-tertiary)">1 published</span>
+    </div>
+    <div class="issues-grid">
+      <div class="issue-card">
+        <div class="issue-meta"><span class="issue-num">#001</span> · May 16, 2026</div>
+        <div class="issue-title">Vijay's first week: electricity, women's safety, and a floor test passed</div>
+        <div class="issue-preview">Six days in, the new CM signs two flagship orders and clears the confidence vote. What actually happened — without the spin.</div>
+        <span class="issue-tag">Tamil Nadu</span>
+      </div>
+    </div>
+    <div class="sub-banner" style="margin-top:2rem">
+      <h3>Get every issue in your inbox</h3>
+      <p>Free, 3x a week. Tamil & English. No outrage, no spam.</p>
+      <div class="sub-banner-form">
+        <input type="email" id="issues-email" placeholder="your@email.com" />
+        <button onclick="handleSubscribe('issues')">Subscribe</button>
+      </div>
+      <div class="confirmed" id="confirmed-issues">You're subscribed. See you Wednesday.</div>
+    </div>
+  </div>
+
+  <div class="page" id="page-about">
+    <div class="about-wrap">
+      <p class="about-kicker">About Mozhi</p>
+      <h2 class="about-title">Built for people who want facts, not fire.</h2>
+      <p class="about-body">Tamil news has a noise problem. Every channel, every feed, every WhatsApp forward is engineered to provoke. <strong>Mozhi exists to be different.</strong></p>
+      <p class="about-body">We cover Tamil Nadu politics, governance, and global Tamil affairs in plain Tamil and English — factual, bilingual, and calm. No screaming anchors. No partisan framing. No engagement-bait headlines.</p>
+      <p class="about-body">We started with Vijay becoming CM in May 2026 — a genuinely historic moment in Tamil Nadu — and we'll keep covering whatever matters next: policy decisions, diaspora stories, cultural shifts, and the slow work of governance.</p>
+
+      <div class="about-values">
+        <div class="value-row">
+          <div class="value-icon"><i class="ti ti-shield-check" aria-hidden="true"></i></div>
+          <div class="value-text"><h4>Factual first</h4><p>Every claim is sourced. We correct mistakes publicly and fast.</p></div>
+        </div>
+        <div class="value-row">
+          <div class="value-icon"><i class="ti ti-language" aria-hidden="true"></i></div>
+          <div class="value-text"><h4>Bilingual always</h4><p>Tamil and English in every issue. Built for the diaspora and homeland alike.</p></div>
+        </div>
+        <div class="value-row">
+          <div class="value-icon"><i class="ti ti-eye-off" aria-hidden="true"></i></div>
+          <div class="value-text"><h4>Not sponsored by outrage</h4><p>We don't profit from making you angry. Our only product is clarity.</p></div>
+        </div>
+        <div class="value-row">
+          <div class="value-icon"><i class="ti ti-world" aria-hidden="true"></i></div>
+          <div class="value-text"><h4>Global scope</h4><p>From Chennai to London to Singapore — Tamil stories wherever they happen.</p></div>
+        </div>
+      </div>
+
+      <div class="sub-banner">
+        <h3>Read the next issue</h3>
+        <p>Free. 3x a week. In your inbox.</p>
+        <div class="sub-banner-form">
+          <input type="email" id="about-email" placeholder="your@email.com" />
+          <button onclick="handleSubscribe('about')">Subscribe free</button>
+        </div>
+        <div class="confirmed" id="confirmed-about">Welcome to Mozhi. See you Wednesday.</div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-logo">mozhi<span>.news</span></div>
+    <div class="footer-tagline">Not sponsored by outrage</div>
+    <div class="footer-copy">© 2026 Mozhi · Chennai & everywhere Tamil</div>
+  </footer>
+</div>
+
+<script>
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('visible'));
+  document.getElementById('page-' + name).classList.add('visible');
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  const navEl = document.getElementById('nav-' + name);
+  if (navEl) navEl.classList.add('active');
+}
+
+function handleSubscribe(ctx) {
+  const input = document.getElementById(ctx + '-email');
+  if (!input.value || !input.value.includes('@')) {
+    input.style.borderColor = '#E24B4A';
+    setTimeout(() => input.style.borderColor = '', 1500);
+    return;
+  }
+  input.value = '';
+  const confirmed = document.getElementById('confirmed-' + ctx);
+  confirmed.classList.add('show');
+  setTimeout(() => confirmed.classList.remove('show'), 4000);
+}
+</script>
